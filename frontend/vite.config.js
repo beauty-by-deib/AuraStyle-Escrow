@@ -12,6 +12,14 @@ export default defineConfig({
     sourcemap: false,
     minify: 'terser',
     target: 'es2020',
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'stellar-kit': ['@creit.tech/stellar-wallets-kit'],
+        },
+      },
+    },
   },
   define: {
     'process.env': JSON.stringify(process.env),
