@@ -2,6 +2,45 @@
 
 > **A trustless booking platform powered by Stellar/Soroban blockchain, enabling secure, transparent transactions between customers and hair stylists worldwide.**
 
+**🚀 Live Demo:** [https://aura-style-escrow.vercel.app/](https://aura-style-escrow.vercel.app/)
+
+---
+
+## 🔧 Deployment Fix Summary
+
+### Issues Identified and Resolved:
+
+**1. Build Configuration Error (404 NOT_FOUND)**
+- **Problem:** Vercel couldn't locate the build output directory
+- **Solution:** Created `vercel.json` specifying:
+  - Build command: `cd frontend && npm run build`
+  - Output directory: `frontend/dist`
+  - Install command: `cd frontend && npm install`
+  - Framework: `vite`
+
+**2. Invalid npm Dependencies (ETARGET Error)**
+- **Problem:** `@creit.tech/stellar-wallets-kit@0.9.4` version doesn't exist on npm
+- **Solution:** Updated to valid versions using flexible semver ranges:
+  - `@creit.tech/stellar-wallets-kit`: `^1.0.0`
+  - `axios`: `^1.6.0`
+  - `react` & `react-dom`: `^18.3.0`
+
+**3. Vite Build Optimization**
+- **Problem:** Large chunk size warnings treated as build errors
+- **Solution:** Enhanced `vite.config.js`:
+  - Increased `chunkSizeWarningLimit` to 1000
+  - Added manual chunks to split `stellar-kit` separately
+  - Improved code splitting for better performance
+
+**4. Missing Terser Dependency**
+- **Problem:** Vite v5 requires terser for minification but it wasn't installed
+- **Solution:** Added `terser@^5.36.0` to devDependencies
+
+### Result:
+All build blockers removed. The application now builds successfully with optimized bundle splitting and proper dependency resolution.
+
+---
+
 ## 📋 Table of Contents
 
 - [Overview](#overview)
