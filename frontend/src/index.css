@@ -1,0 +1,134 @@
+:root {
+  --primary: #667eea;
+  --secondary: #764ba2;
+  --success: #48bb78;
+  --danger: #f56565;
+  --warning: #ed8936;
+  --gray-light: #f7fafc;
+  --gray-dark: #1a202c;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  color: var(--gray-dark);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  min-height: 100vh;
+}
+
+.app {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.app h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--primary);
+}
+
+.address {
+  text-align: center;
+  padding: 1rem;
+  background: var(--gray-light);
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+}
+
+button {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: var(--gray-dark);
+}
+
+input,
+select {
+  padding: 0.75rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.rec-card {
+  padding: 1.5rem;
+  background: var(--gray-light);
+  border-radius: 8px;
+  border-left: 4px solid var(--success);
+}
+
+.rec-card h2 {
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+.rec-card p {
+  margin: 0.5rem 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.rec-card strong {
+  color: var(--gray-dark);
+}
+
+.error {
+  padding: 0.75rem;
+  background: #fed7d7;
+  color: var(--danger);
+  border-radius: 8px;
+  margin: -1rem -1.5rem 1rem;
+  padding: 0.75rem 1.5rem;
+}
+
+@media (max-width: 640px) {
+  .app {
+    margin: 1rem;
+  }
+
+  form {
+    gap: 1rem;
+  }
+}
