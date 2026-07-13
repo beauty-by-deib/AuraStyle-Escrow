@@ -3,16 +3,11 @@ name: Frontend Tests & Build
 on:
   push:
     branches: [main, develop]
-    paths:
-      - 'frontend/**'
-      - '.github/workflows/frontend.yml'
   pull_request:
     branches: [main, develop]
-    paths:
-      - 'frontend/**'
 
 jobs:
-  test-and-build:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -28,9 +23,12 @@ jobs:
         working-directory: frontend
         run: npm ci
       
-      - name: Check formatting
+      - name: Verify build configuration
         working-directory: frontend
-        run: npm run format:check || true
+        run: |
+          test -f vite.config.js || exit 1
+          test -f package.json || exit 1
+          echo "✓ Build configuration present"
       
       - name: Build frontend
         working-directory: frontend
@@ -39,7 +37,12 @@ jobs:
           CI: true
       
       - name: Verify build output
-        run: ls -lh frontend/dist/ || true
+        run: |
+          test -d frontend/dist || exit 1
+          test -f frontend/dist/index.html || exit 1
+          test -d frontend/dist/assets || exit 1
+          echo "✓ Build output valid"
+          ls -lh frontend/dist/
       
       - name: Upload build artifact
         uses: actions/upload-artifact@v3
